@@ -1,6 +1,8 @@
 #include <iostream>
 #include <deque>
 
+using namespace std;
+
 #define MAX 100001
 
 int a, b;
@@ -17,22 +19,21 @@ int bfs() {
 
         if(curr == b) return vis[b] - 1;
 
-        for(int i = 0; i < 2; i++) {
-            int next = curr;
+        if(curr + 1 < MAX && !vis[curr + 1]) {
+            dq.push_back(curr + 1);
+            vis[curr + 1] = vis[curr] + 1;
+        }
 
-            if(i == 0) next += 1;
-            else if(i == 1) next -= 1;
-            
-            if(next < MAX && !vis[next]) {
-                dq.push_back(next);
-                vis[next] = vis[curr] + 1;
-            }
+        if(curr - 1 < MAX && !vis[curr - 1]) {
+            dq.push_back(curr - 1);
+            vis[curr - 1] = vis[curr] + 1;
         }
 
         if(curr * 2 < MAX && !vis[curr * 2]) {
             dq.push_front(curr * 2);
             vis[curr * 2] = vis[curr];
         }
+
     }
 }
 
