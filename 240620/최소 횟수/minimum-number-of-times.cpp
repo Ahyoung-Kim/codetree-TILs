@@ -15,7 +15,8 @@ int bfs() {
     vis[a] = 1;
 
     while(!dq.empty()) {
-        int curr = dq.front(); dq.pop_front();
+        int curr = dq.front();
+        dq.pop_front();
 
         if(curr == b) return vis[b] - 1;
 
@@ -33,8 +34,9 @@ int bfs() {
             dq.push_front(curr * 2);
             vis[curr * 2] = vis[curr];
         }
-
     }
+
+    return -1;
 }
 
 int main() {
